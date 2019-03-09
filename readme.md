@@ -28,6 +28,8 @@ sudo pip install numpy
 sudo apt-get install python-opencv
 ```
 
+* Qualquer problema com alguma bilbioteca, tente instalar para o python3
+
 ## Como executar
 
 ```sh
@@ -40,7 +42,6 @@ Parametros
     -c | --scale   :   cor. Pode ser ["gray", "red", "blue", "green"]
     -o | --output  :   caminho_para_salvar_a_imagem
 
-* Qualquer problema com alguma bilbioteca, tente instalar para o python3
 
 # Grupo
 - Aline Moura Araújo
