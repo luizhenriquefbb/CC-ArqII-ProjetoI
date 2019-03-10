@@ -3,14 +3,10 @@ import cv2  # openCV
 import argparse
 import numpy as np
 import timeit
+import random
 
 '''
-Tentando melhorar o desempenho
-
--> removendo chamadas de funcoes
-(principio da localidade espacial: evitar quebra do fluxo de execucao)
-
-
+acessar elementos da matriz aleatoriamente
 '''
 
 def convertArrayToNumpy(array):
@@ -52,17 +48,26 @@ def applyToAllPixels(img, action):
 	fun=action.get('fun')
 	parameters=action.get('parameters')
 
-	# Usar metodo pixel a pixel
+	# construir matriz da nova imagem
 	newImage=[]
-	for h in range(height):
-		newImage.append([])
-		for w in range(width):
+	for _ in range(height):
+		newImage.append( [None] * width )
+
+	# acessar elementos da matriz aleatoriamente
+	shuffleHeight = (range(height)) # nao aleatorizado ainda
+	shuffleWidth = (range(width)) # nao aleatorizado ainda
+	
+	random.shuffle(shuffleHeight) # aleatorizar os acessos
+	random.shuffle(shuffleWidth) # aleatorizar os acessos
+	
+	for h in shuffleHeight:
+		for w in shuffleWidth:
 			# Verifica se precisa de parametros fora o R,G,B
 			if (parameters != None):
-				newImage[-1].append(fun(img[h][w][0], img[h][w][1],
+				newImage[h][w]=(fun(img[h][w][0], img[h][w][1],
 									img[h][w][2],  parameters))
 			else:
-				newImage[-1].append(fun(img[h][w][0], img[h][w][1],  img[h][w][2]))
+				newImage[h][w]=(fun(img[h][w][0], img[h][w][1],  img[h][w][2]))
 
 	return convertArrayToNumpy(newImage)
 

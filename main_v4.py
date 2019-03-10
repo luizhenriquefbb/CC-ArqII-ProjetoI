@@ -47,23 +47,20 @@ def applyToAllPixels(img, action):
 	fun=action.get('fun')
 	parameters=action.get('parameters')
 
-	# Usar metodo pixel a pixel
+	# construir matriz da nova imagem
 	newImage=[]
-	
+	for _ in range(height):
+		newImage.append( [None] * width )
 
-
-	for _ in range(width):
-		newImage.append( [None] * height )
-
-
+	# Usar metodo pixel a pixel
 	for w in range(width):
 		for h in range(height):
 			# Verifica se precisa de parametros fora o R,G,B
 			if (parameters != None):
-				newImage[w][h]=(fun(img[h][w][0], img[h][w][1],
+				newImage[h][w]=(fun(img[h][w][0], img[h][w][1],
 									img[h][w][2],  parameters))
 			else:
-				newImage[w][h]=(fun(img[h][w][0], img[h][w][1],  img[h][w][2]))
+				newImage[h][w]=(fun(img[h][w][0], img[h][w][1],  img[h][w][2]))
 
 	return convertArrayToNumpy(newImage)
 

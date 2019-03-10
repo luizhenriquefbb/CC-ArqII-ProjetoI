@@ -33,14 +33,14 @@ sudo apt-get install python-opencv
 ## Como executar
 
 ```sh
-python3 main.py -i <caminho_da_imagem> -c <cor> -o <caminho_para_salvar_a_imagem>
+python3 main_v<versao>.py -i <caminho_da_imagem> -c <cor> -o <caminho_para_salvar_a_imagem>
 ```
 
 Parametros
 
-    -i | --image   :   caminho_da_imagem original
-    -c | --scale   :   cor. Pode ser ["gray", "red", "blue", "green"]
-    -o | --output  :   caminho_para_salvar_a_imagem
+    -i | --image   :   caminho_da_imagem original                       : opcional (usa uma imagem padrão na raiz do repositorio)
+    -c | --scale   :   cor. Pode ser ["gray", "red", "blue", "green"]   : opcional (default é cinza)
+    -o | --output  :   caminho_para_salvar_a_imagem                     : obrigatorio
 
 
 # Grupo

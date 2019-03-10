@@ -5,8 +5,7 @@ import numpy as np
 import timeit
 
 '''
-piorando o desempenho
--> invertendo os for
+Gerando a imagem dentro do for
 '''
 
 def convertArrayToNumpy(array):
