@@ -5,7 +5,8 @@ import numpy as np
 import timeit
 
 '''
-Criando array de imagem em dois fors diferentes
+Criando array de imagem em dois fors diferentes (v3)
+-> invertendo for do v3
 '''
 
 def convertArrayToNumpy(array):
@@ -53,8 +54,8 @@ def applyToAllPixels(img, action):
 		newImage.append( [None] * width )
 
 	# Usar metodo pixel a pixel
-	for w in range(width):
-		for h in range(height):
+	for h in range(height):
+		for w in range(width):
 			# Verifica se precisa de parametros fora o R,G,B
 			if (parameters != None):
 				newImage[h][w]=(fun(img[h][w][0], img[h][w][1],

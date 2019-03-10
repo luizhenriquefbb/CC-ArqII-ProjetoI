@@ -3,10 +3,10 @@ import cv2  # openCV
 import argparse
 import numpy as np
 import timeit
+import random
 
 '''
-Criando array de imagem em dois fors diferentes (v4)
--> invertendo for do v4
+acessar elementos da matriz aleatoriamente
 '''
 
 def convertArrayToNumpy(array):
@@ -53,9 +53,15 @@ def applyToAllPixels(img, action):
 	for _ in range(height):
 		newImage.append( [None] * width )
 
-	# Usar metodo pixel a pixel
-	for h in range(height):
-		for w in range(width):
+	# acessar elementos da matriz aleatoriamente
+	shuffleHeight = (range(height)) # nao aleatorizado ainda
+	shuffleWidth = (range(width)) # nao aleatorizado ainda
+
+	random.shuffle(list(shuffleHeight)) # aleatorizar os acessos
+	random.shuffle(list(shuffleWidth)) # aleatorizar os acessos
+	
+	for h in shuffleHeight:
+		for w in shuffleWidth:
 			# Verifica se precisa de parametros fora o R,G,B
 			if (parameters != None):
 				newImage[h][w]=(fun(img[h][w][0], img[h][w][1],
