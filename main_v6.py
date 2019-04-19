@@ -3,7 +3,9 @@ import cv2  # openCV
 import argparse
 import numpy as np
 import timeit
-from handythread import foreach
+# from handythread import foreach # Thread
+from handythread2 import foreach # Processo
+# from handythread3 import foreach # Processo compartilhando memoria
 
 '''
 Paralelizando
@@ -47,7 +49,7 @@ def applyToAllPixels(img, action, threads=4):
 	# colocar a matriz em uma lista
 	tempArray = np.asarray(img).reshape(height * width , 3)
 
-	# rodar codigo paralelo em x threads
+	# rodar codigo paralelo em x processos
 	tempArray2 = foreach(fun, tempArray, threads=threads, return_=True)
 
 	# colocar lista em matriz de volta
