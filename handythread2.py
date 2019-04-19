@@ -20,34 +20,45 @@ def _child(fun, elementos):
 def parent(fun, elementos, processos=4):
     number_of_child = 0
     
-    # quebrar elementos em x listas. Cada um vai rodar em um processo
+    pidList = []
     fator = len(elementos)/processos
-    inputs=[]
-    response = []
+    inputs = []
     
-    while True:
-        for i in range(processos):
-            inputs.append(elementos[i*fator:(i*fator)+fator-1])
+    # quebrar elementos em x listas. Cada um vai rodar em um processo
+    # dividir array entre os processos
+    for i in range(processos):
+        inputs.append(elementos[i*fator:(i*fator)+fator-1])
 
-
+    # construir os processos
+    while number_of_child < processos:
 
         newpid = os.fork()
+
+        # processo filho
         if newpid == 0:
             _child(fun, inputs[number_of_child])
+        
+        # processo principal
         else:
-            pids = (os.getpid(), newpid)
+            pidList.append(newpid)
+
+            # pids = (os.getpid(), newpid)
             # print("parent: %d, child: %d\n" % pids)
-        if number_of_child < processos: 
+        
             number_of_child+=1
-            continue
-        else:
-            break
+
+
+
+    # esperar os processos acabarem (join)
+    for p in pidList:
+        os.waitpid(p, 0)
 
     print("Parent ended")
+    return elementos
 
 
 def foreach(fun, tempArray, threads=4, return_=True):
-    parent(fun, tempArray, threads)
+    return parent(fun, tempArray, threads)
 
 
 
