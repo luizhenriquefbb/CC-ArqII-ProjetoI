@@ -53,23 +53,29 @@ Parametros
 
 1. Foi feito 3 maneiras de paralelizar o processo: usando threads, usando processos, usando procesos com memória compartilhada.
 
-1.1. **Usando threads**: quando se divide o programa em threads, elas se distribuem pelos processadores (no meu caso são 4), mas por algum motivo elas não executado com 100$ da capacidade
+1.1. **Usando threads**: quando se divide o programa em threads, elas se distribuem pelos processadores (no meu caso são 4), mas por algum motivo elas não executado com 100$ da capacidade (compartilham o mesmo interpretador) (custo piora, pois além de compartilhar o mesmo interpretador, tem o custo de ficar trocando de thread)
+
 
 1.2 **Usando processos**: O melhor dos casos. Aqui, cada processo é executado com 100% da capacidade e o tempo de execução é visibvelmente melhor. O problema é que como cada processo é criado a partir de um fork, o retorno do processamento de cada work não é feito (em c/c++ poderíamos compartilhar a memória através de ponteiros)
 
+
 1.3 **Usando processos com memória compartilhada**: Pesquisando um pouco, existe uma maneira de compartilhar memória entre os processos python. Porém essa abordagem gera um join muito demorado. E a causa ainda é desconhecida
+
 
 ## Como executar
 ```sh
 python main_v6.py -i <imagem_original> -o <imagem de saída> -t <número de processos>
 ```
 
-Para trocar o tipo de abordagem, em `main_v6.py` altere o import para o desejado, por exemplo:
+Para trocar o tipo de abordagem, em `main_v5.py` altere o import para o desejado, por exemplo:
 ```py
 # from handythread import foreach # Thread
 from handythread2 import foreach # Processo
 # from handythread3 import foreach # Processo compartilhando memoria
 ```
+
+## Relatorio
+[link](Relatorio_Arq_2.pdf)
 
 
 

@@ -4,8 +4,8 @@ import argparse
 import numpy as np
 import timeit
 # from handythread import foreach # Thread
-from handythread2 import foreach # Processo
-# from handythread3 import foreach # Processo compartilhando memoria
+# from handythread2 import foreach # Processo
+from handythread3 import foreach # Processo compartilhando memoria
 
 '''
 Paralelizando
